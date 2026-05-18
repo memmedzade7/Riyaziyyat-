@@ -9,201 +9,229 @@
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #030712;
         }
-        .animate-fade-in {
-            animation: fadeIn 0.3s ease-out forwards;
+        .glass-panel {
+            background: rgba(17, 24, 39, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(4px); }
+        .glass-card {
+            background: linear-gradient(135deg, rgba(31, 41, 55, 0.4) 0%, rgba(17, 24, 39, 0.6) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-card:hover {
+            border-color: rgba(20, 184, 166, 0.3);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px -10px rgba(20, 184, 166, 0.15);
+        }
+        .animate-chat {
+            animation: slideIn 0.25s ease-out forwards;
+        }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(8px); }
             to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
-<body class="bg-slate-950 text-slate-100 min-h-screen selection:bg-teal-500 selection:text-slate-950">
+<body class="text-slate-200 min-h-screen selection:bg-teal-500 selection:text-slate-950">
 
-    <header class="border-b border-slate-800/80 bg-slate-950/80 backdrop-blur-md sticky top-0 z-50">
+    <div class="absolute top-0 left-1/4 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute top-1/3 right-1/4 w-[500px] h-[500px] bg-indigo-500/5 rounded-full blur-3xl pointer-events-none"></div>
+
+    <header class="border-b border-slate-900/60 bg-gray-950/70 backdrop-blur-xl sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             <div class="flex items-center space-x-2">
-                <span class="text-2xl font-extrabold tracking-wider bg-gradient-to-r from-teal-400 to-emerald-400 bg-clip-text text-transparent">
-                    RM <span class="text-slate-200 font-bold">MATH</span>
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-teal-400 to-indigo-500 flex items-center justify-center font-black text-slate-950 text-xl shadow-lg shadow-teal-500/20">
+                    R
+                </div>
+                <span class="text-xl font-extrabold tracking-wider text-white">
+                    RM<span class="bg-gradient-to-r from-teal-400 to-indigo-400 bg-clip-text text-transparent font-medium">MATH</span>
                 </span>
             </div>
-            <nav class="hidden md:flex space-x-8 text-sm font-medium text-slate-400">
+            <nav class="hidden md:flex space-x-10 text-sm font-semibold text-slate-400">
                 <a href="#about" class="hover:text-teal-400 transition-colors">Haqqımda</a>
-                <a href="#interactive" class="hover:text-teal-400 transition-colors">İnteraktiv Alətlər</a>
-                <a href="#ai-tools" class="hover:text-teal-400 transition-colors">AI Asistan</a>
-                <a href="#gamification" class="hover:text-teal-400 transition-colors">Reytinq</a>
+                <a href="#interactive" class="hover:text-teal-400 transition-colors">İnteraktiv Lövhə</a>
+                <a href="#ai-tools" class="hover:text-teal-400 transition-colors">AI Köməkçi</a>
+                <a href="#gamification" class="hover:text-teal-400 transition-colors">Liderlər</a>
             </nav>
             <div>
-                <a href="https://wa.me/#" target="_blank" class="bg-teal-500 hover:bg-teal-400 text-slate-950 px-5 py-2.5 rounded-xl font-bold text-sm shadow-lg shadow-teal-500/10 transition-all duration-200 inline-block">
-                    Dərsə Qoşul
+                <a href="https://wa.me/#" target="_blank" class="bg-gradient-to-r from-teal-500 to-emerald-500 hover:opacity-90 text-slate-950 px-6 py-2.5 rounded-xl font-bold text-sm shadow-xl shadow-teal-500/10 transition-all inline-block">
+                    Dərsə Yazıl
                 </a>
             </div>
         </div>
     </header>
 
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-32">
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-36 relative z-10">
         
         <section id="about" class="grid lg:grid-cols-12 gap-12 items-center">
             <div class="space-y-6 lg:col-span-7">
-                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-teal-500/10 text-teal-400 border border-teal-500/20">
-                    ⚡ Müasir Onlayn Təhsil Modeli
-                </span>
-                <h1 class="text-4xl sm:text-6xl font-black text-white tracking-tight leading-none">
-                    Riyaziyyatı <br><span class="bg-gradient-to-r from-teal-400 to-emerald-400 bg-clip-text text-transparent">Rəsul Məmmədzadə</span> ilə kəşf et!
+                <div class="inline-flex items-center space-x-2 px-3 py-1.5 rounded-full text-xs font-semibold bg-slate-900 border border-slate-800 text-teal-400">
+                    <span class="w-2 h-2 rounded-full bg-teal-400 animate-pulse"></span>
+                    <span>Premium Online Repetitorluq</span>
+                </div>
+                <h1 class="text-4xl sm:text-6xl font-black text-white tracking-tight leading-[1.1]">
+                    Riyaziyyatda <br>
+                    <span class="bg-gradient-to-r from-white via-teal-200 to-indigo-400 bg-clip-text text-transparent">Uğura Gedən Yol</span>
                 </h1>
                 <p class="text-lg text-slate-400 leading-relaxed max-w-2xl">
-                    5-9-cu siniflər, abituriyentlər və olimpiadalara hazırlıq. Quru düsturları unudun — süni intellekt köməkçisi, oyunlaşdırılmış tapşırıqlar və canlı vizuallaşdırma alətləri ilə riyaziyyatı tam fərqli müstəvidə öyrənin.
+                    Salam, mən <strong>Rəsul Məmmədzadə</strong>. Şagirdlərimə riyaziyyatı əzbərlətmək deyil, onun məntiqini və gözəlliyini sevdirmək üçün texnologiyanın ən son imkanlarından istifadə edərək dərslər keçirəm.
                 </p>
-                <div class="pt-2">
-                    <a href="#interactive" class="bg-slate-900 border border-slate-800 hover:border-slate-700 text-slate-200 px-6 py-3.5 rounded-xl font-semibold transition-all inline-block shadow-xl">
-                        Platformanı Sınaqdan Keçir ↓
+                <div class="flex items-center space-x-4 pt-2">
+                    <a href="#interactive" class="bg-teal-500 hover:bg-teal-400 text-slate-950 px-6 py-3.5 rounded-xl font-bold transition-all shadow-lg shadow-teal-500/10">
+                        Alətləri Sına
+                    </a>
+                    <a href="#ai-tools" class="bg-slate-900 border border-slate-800 hover:border-slate-700 text-slate-300 px-6 py-3.5 rounded-xl font-semibold transition-all">
+                        AI Asistan 🤖
                     </a>
                 </div>
             </div>
             
-            <div class="lg:col-span-5 bg-gradient-to-br from-slate-900 to-slate-900/40 p-8 rounded-3xl border border-slate-800/60 shadow-2xl relative overflow-hidden group">
-                <div class="absolute top-0 right-0 w-32 h-32 bg-teal-500/10 rounded-full blur-3xl group-hover:bg-teal-500/20 transition-all duration-500"></div>
-                <h3 class="text-xl font-bold text-white mb-6 flex items-center gap-2">
-                    <span class="w-2 h-2 rounded-full bg-teal-400"></span> Niyə RM MATH?
-                </h3>
-                <ul class="space-y-5 text-slate-300">
-                    <li class="flex items-start space-x-3">
-                        <span class="text-teal-400 font-bold bg-teal-500/10 w-6 h-6 rounded-md flex items-center justify-center text-xs shrink-0 mt-0.5">✓</span>
-                        <div>
-                            <strong class="text-white block font-medium">Fərdiləşdirilmiş Alqoritm</strong>
-                            <span class="text-sm text-slate-400">Şagirdin zəif mövzularını müəyyən edən test sistemi.</span>
-                        </div>
-                    </li>
-                    <li class="flex items-start space-x-3">
-                        <span class="text-teal-400 font-bold bg-teal-500/10 w-6 h-6 rounded-md flex items-center justify-center text-xs shrink-0 mt-0.5">✓</span>
-                        <div>
-                            <strong class="text-white block font-medium">Dinamik Qrafiklər</strong>
-                            <span class="text-sm text-slate-400">Düsturların dəyişməsini vizual olaraq görərək dərketmə.</span>
-                        </div>
-                    </li>
-                    <li class="flex items-start space-x-3">
-                        <span class="text-teal-400 font-bold bg-teal-500/10 w-6 h-6 rounded-md flex items-center justify-center text-xs shrink-0 mt-0.5">✓</span>
-                        <div>
-                            <strong class="text-white block font-medium">Gamification (Oyunlaşdırma)</strong>
-                            <span class="text-sm text-slate-400">Tapşırıqları həll etdikcə XP və rütbələr qazanmaq imkanı.</span>
-                        </div>
-                    </li>
-                </ul>
+            <div class="lg:col-span-5 grid sm:grid-cols-1 gap-4">
+                <div class="glass-card p-6 rounded-2xl flex items-start space-x-4">
+                    <div class="p-3 bg-teal-500/10 rounded-xl text-teal-400 font-bold text-xl">📐</div>
+                    <div>
+                        <h3 class="font-bold text-white text-base">Vizual Metodika</h3>
+                        <p class="text-sm text-slate-400 mt-1">Həndəsi fiqurlar və funksiyalar qrafiklər üzərində vizual izah olunur.</p>
+                    </div>
+                </div>
+                <div class="glass-card p-6 rounded-2xl flex items-start space-x-4">
+                    <div class="p-3 bg-indigo-500/10 rounded-xl text-indigo-400 font-bold text-xl">🤖</div>
+                    <div>
+                        <h3 class="font-bold text-white text-base">Süni İntellekt Dəstəyi</h3>
+                        <p class="text-sm text-slate-400 mt-1">Dərsdən kənarda şagirdlərin suallarını cavablandıran 24/7 aktiv asistan.</p>
+                    </div>
+                </div>
+                <div class="glass-card p-6 rounded-2xl flex items-start space-x-4">
+                    <div class="p-3 bg-amber-500/10 rounded-xl text-amber-400 font-bold text-xl">🏆</div>
+                    <div>
+                        <h3 class="font-bold text-white text-base">Oyunlaşdırılmış Sistem</h3>
+                        <p class="text-sm text-slate-400 mt-1">Tapşırıqları vaxtında həll edən şagirdlər xallar qazanaraq liderliyə yüksəlir.</p>
+                    </div>
+                </div>
             </div>
         </section>
 
         <section id="interactive" class="space-y-8 scroll-mt-24">
-            <div class="text-center max-w-3xl mx-auto space-y-3">
-                <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-white">Dinamik Riyazi Alətlər</h2>
-                <p class="text-slate-400">Sürgüləri (slider) hərəkət etdirərək bucaq əmsalının (a) və sərbəst həddin (b) qrafikə təsirini canlı izləyin.</p>
+            <div class="max-w-2xl space-y-2">
+                <h2 class="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">Dinamik Riyazi Lövhə</h2>
+                <p class="text-slate-400 text-sm sm:text-base">Xətti funksiyaların dəyişməsini vizual olaraq idarə edin.</p>
             </div>
 
-            <div class="bg-slate-900/40 border border-slate-800 rounded-3xl p-6 sm:p-8 grid lg:grid-cols-12 gap-8 items-center">
+            <div class="glass-panel rounded-3xl p-6 sm:p-8 grid lg:grid-cols-12 gap-8 items-center shadow-2xl">
                 <div class="space-y-6 lg:col-span-4">
-                    <div class="bg-teal-500/10 border border-teal-500/20 px-4 py-3 rounded-xl inline-block">
-                        <span class="text-sm font-mono font-bold text-teal-400">Funksiya: y = ax + b</span>
+                    <div class="bg-slate-900 border border-slate-800/80 px-4 py-2.5 rounded-xl inline-flex items-center space-x-2">
+                        <span class="w-2 h-2 rounded-full bg-indigo-400"></span>
+                        <span class="text-xs font-mono font-bold text-slate-300">Tənlik: y = ax + b</span>
                     </div>
                     
-                    <div class="space-y-5">
+                    <div class="space-y-6">
                         <div>
-                            <div class="flex justify-between text-sm mb-2">
-                                <span class="text-slate-300 font-medium">Parametr a (Bucaq Əmsalı):</span>
-                                <span id="slopeVal" class="text-teal-400 font-mono font-bold text-base">1</span>
+                            <div class="flex justify-between text-xs mb-2">
+                                <span class="text-slate-400 font-medium">Bucaq Əmsalı (a):</span>
+                                <span id="slopeVal" class="text-teal-400 font-mono font-bold text-sm bg-teal-500/10 px-2 py-0.5 rounded">1</span>
                             </div>
-                            <input id="slopeSlider" type="range" min="-5" max="5" step="0.5" value="1" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-teal-500" />
+                            <input id="slopeSlider" type="range" min="-4" max="4" step="0.5" value="1" class="w-full h-1.5 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-teal-500" />
                         </div>
 
                         <div>
-                            <div class="flex justify-between text-sm mb-2">
-                                <span class="text-slate-300 font-medium">Parametr b (Sərbəst Hədd):</span>
-                                <span id="interceptVal" class="text-teal-400 font-mono font-bold text-base">0</span>
+                            <div class="flex justify-between text-xs mb-2">
+                                <span class="text-slate-400 font-medium">Sərbəst Hədd (b):</span>
+                                <span id="interceptVal" class="text-indigo-400 font-mono font-bold text-sm bg-indigo-500/10 px-2 py-0.5 rounded">0</span>
                             </div>
-                            <input id="interceptSlider" type="range" min="-50" max="50" step="5" value="0" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-teal-500" />
+                            <input id="interceptSlider" type="range" min="-40" max="40" step="5" value="0" class="w-full h-1.5 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-indigo-500" />
                         </div>
                     </div>
                 </div>
 
-                <div class="lg:col-span-8 bg-slate-950 rounded-2xl p-4 h-80 flex flex-col items-center justify-center relative border border-slate-800/80 overflow-hidden">
-                    <div class="absolute inset-0 opacity-5 bg-[radial-gradient(#334155_1px,transparent_1px)] [background-size:20px_20px]"></div>
+                <div class="lg:col-span-8 bg-slate-950 rounded-2xl p-4 h-80 flex flex-col items-center justify-center relative border border-slate-900 overflow-hidden shadow-inner">
+                    <div class="absolute inset-0 opacity-[0.03] bg-[linear-gradient(to_right,#fff_1px,transparent_1px),linear-gradient(to_bottom,#fff_1px,transparent_1px)] bg-[size:20px_20px]"></div>
                     
                     <div class="absolute w-full h-[1px] bg-slate-800 top-1/2 left-0"></div>
                     <div class="absolute h-full w-[1px] bg-slate-800 left-1/2 top-0"></div>
                     
                     <svg class="absolute inset-0 w-full h-full" id="graphSvg" viewBox="0 0 500 320" preserveAspectRatio="none">
-                        <line id="dynamicLine" x1="0" y1="160" x2="500" y2="160" stroke="#14b8a6" stroke-width="3.5" class="transition-all duration-150 ease-out" />
+                        <line id="dynamicLine" x1="0" y1="160" x2="500" y2="160" stroke="#14b8a6" stroke-width="4" stroke-linecap="round" class="transition-all duration-150 ease-out" />
                     </svg>
 
-                    <span class="absolute bottom-3 right-4 text-xs font-mono text-slate-500">X oxu</span>
-                    <span class="absolute top-3 left-1/2 -translate-x-1/2 text-xs font-mono text-slate-500">Y oxu</span>
+                    <span class="absolute bottom-3 right-4 text-[10px] font-mono tracking-widest text-slate-600 uppercase">X Oxu</span>
+                    <span class="absolute top-3 left-1/2 -translate-x-1/2 text-[10px] font-mono tracking-widest text-slate-600 uppercase">Y Oxu</span>
                     
-                    <div class="absolute top-4 right-4 bg-slate-900/90 px-4 py-2 rounded-xl border border-slate-800 text-sm font-mono text-teal-400 shadow-xl">
-                        Düstur: <span id="formulaText" class="font-bold">y = 1x + 0</span>
+                    <div class="absolute top-4 right-4 bg-slate-900/90 backdrop-blur border border-slate-800 px-4 py-2 rounded-xl text-xs font-mono text-teal-400 shadow-xl">
+                        Cari: <span id="formulaText" class="font-bold text-white">y = 1x + 0</span>
                     </div>
                 </div>
             </div>
         </section>
 
         <section id="ai-tools" class="space-y-8 scroll-mt-24">
-            <div class="text-center max-w-3xl mx-auto space-y-3">
-                <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-white">24/7 Süni İntellekt Asistanı</h2>
-                <p class="text-slate-400">Riyazi qaydaları, formulları və ya anlayışları ağıllı asistandan soruşun.</p>
+            <div class="max-w-2xl space-y-2">
+                <h2 class="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">AI Riyaziyyat Köməkçisi</h2>
+                <p class="text-slate-400 text-sm sm:text-base">Anlamadığınız düsturları və mövzuları 24/7 süni intellektdən soruşun.</p>
             </div>
 
-            <div class="max-w-2xl mx-auto bg-gradient-to-b from-slate-900 to-slate-950 p-6 sm:p-8 rounded-3xl border border-slate-800/80 space-y-4 shadow-xl">
-                <div class="flex gap-2">
+            <div class="max-w-3xl mx-auto glass-panel rounded-3xl overflow-hidden shadow-2xl border border-slate-800/50">
+                <div class="bg-slate-900/50 px-6 py-4 border-b border-slate-800 flex items-center space-x-3">
+                    <div class="w-3 h-3 rounded-full bg-emerald-500 animate-pulse"></div>
+                    <p class="text-sm font-bold text-white tracking-wide">RM-Math-Assistant v1.0</p>
+                </div>
+
+                <div class="p-6 space-y-4 min-h-[160px] max-h-[300px] overflow-y-auto bg-slate-950/40" id="chatContainer">
+                    <div class="flex items-start space-x-3 max-w-[85%]">
+                        <div class="w-8 h-8 rounded-lg bg-teal-500/10 border border-teal-500/20 flex items-center justify-center text-xs text-teal-400 shrink-0">🤖</div>
+                        <div class="bg-slate-900 px-4 py-3 rounded-2xl rounded-tl-none border border-slate-800/60 text-sm text-slate-300">
+                            Salam! Mən Rəsul müəllimin yaratdığı ağıllı köməkçiyəm. Məndən kvadrat tənliklər, faiz, həndəsə qaydaları barədə soruşa bilərsən. Necə kömək edim?
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-4 bg-slate-900/40 border-t border-slate-800 flex items-center space-x-2">
                     <input 
                         id="aiInput"
                         type="text" 
-                        placeholder="Məsələn: Diskriminant düsturu nədir? və ya Faiz necə tapılır?..." 
-                        class="flex-1 bg-slate-950 border border-slate-800 rounded-xl px-4 py-3.5 text-sm focus:outline-none focus:border-teal-500/80 transition-colors text-slate-200 placeholder:text-slate-600"
+                        placeholder="Sualınızı bura yazın (Məs: Faiz necə tapılır?)..." 
+                        class="flex-1 bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-teal-500 text-slate-200 placeholder:text-slate-600"
                     />
-                    <button id="aiBtn" class="bg-teal-500 hover:bg-teal-400 text-slate-950 px-6 py-3.5 rounded-xl font-bold text-sm transition-all shadow-lg shadow-teal-500/10 cursor-pointer">
-                        Soruş
+                    <button id="aiBtn" class="bg-teal-500 hover:bg-teal-400 text-slate-950 px-5 py-3 rounded-xl font-bold text-sm transition-all shadow-lg shadow-teal-500/10 cursor-pointer">
+                        Göndər
                     </button>
-                </div>
-
-                <div id="aiResponseBox" class="hidden bg-slate-900/60 rounded-xl p-5 border border-teal-500/20 text-sm leading-relaxed text-slate-300 animate-fade-in">
-                    <div class="flex items-center space-x-2 text-teal-400 font-bold mb-2">
-                        <span class="flex h-2 w-2 rounded-full bg-teal-400"></span>
-                        <span>RM Math AI Bot:</span>
-                    </div>
-                    <p id="aiResponseText"></p>
                 </div>
             </div>
         </section>
 
         <section id="gamification" class="space-y-8 scroll-mt-24">
-            <div class="text-center max-w-3xl mx-auto space-y-3">
-                <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-white">Həftəlik Reytinq Cədvəli</h2>
-                <p class="text-slate-400">Şagirdlərimiz tapşırıqları bitirdikcə xallar (XP) qazanır və liqalarda yarışırlar.</p>
+            <div class="max-w-2xl space-y-2">
+                <h2 class="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">Həftəlik Reytinq</h2>
+                <p class="text-slate-400 text-sm sm:text-base">Dərslərdə və tapşırıqlarda ən yüksək nəticə göstərən aktiv şagirdlərimiz.</p>
             </div>
 
-            <div class="max-w-2xl mx-auto bg-slate-900/30 border border-slate-800 rounded-3xl overflow-hidden shadow-2xl">
-                <div class="bg-slate-900/80 px-6 py-4 border-b border-slate-800 flex justify-between items-center">
-                    <span class="font-bold text-slate-200 text-sm">Şagird</span>
-                    <span class="font-bold text-teal-400 text-sm">Ümumi Bal (Pi-Coin)</span>
+            <div class="max-w-2xl mx-auto glass-panel rounded-2xl overflow-hidden shadow-2xl">
+                <div class="bg-slate-900/60 px-6 py-4 border-b border-slate-800 flex justify-between items-center">
+                    <span class="font-bold text-slate-400 text-xs uppercase tracking-wider">Şagird Rütbəsi</span>
+                    <span class="font-bold text-teal-400 text-xs uppercase tracking-wider">Xal (XP)</span>
                 </div>
-                <div class="divide-y divide-slate-800/60">
-                    <div class="px-6 py-5 flex items-center justify-between hover:bg-slate-900/20 transition-colors">
+                <div class="divide-y divide-slate-900/50">
+                    <div class="px-6 py-4.5 flex items-center justify-between hover:bg-slate-900/20 transition-colors">
                         <div class="flex items-center space-x-4">
-                            <span class="font-mono text-amber-400 text-base font-black w-6">1.</span>
+                            <span class="font-mono text-amber-400 text-lg font-black w-6">1</span>
                             <div>
                                 <p class="font-bold text-white text-sm">Ayan Əliyeva</p>
                                 <p class="text-xs text-teal-400 font-medium mt-0.5">🥇 Həndəsə Ustası</p>
                             </div>
                         </div>
-                        <span class="font-mono font-extrabold text-emerald-400 text-sm bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/10">1250 XP</span>
+                        <span class="font-mono font-extrabold text-emerald-400 text-xs bg-emerald-500/10 px-3 py-1 rounded-lg border border-emerald-500/10">1250 XP</span>
                     </div>
-                    <div class="px-6 py-5 flex items-center justify-between hover:bg-slate-900/20 transition-colors">
+                    <div class="px-6 py-4.5 flex items-center justify-between hover:bg-slate-900/20 transition-colors">
                         <div class="flex items-center space-x-4">
-                            <span class="font-mono text-slate-400 text-base font-black w-6">2.</span>
+                            <span class="font-mono text-slate-400 text-lg font-black w-6">2</span>
                             <div>
                                 <p class="font-bold text-white text-sm">Murad Həsənov</p>
-                                <p class="text-xs text-amber-400 font-medium mt-0.5">🥈 Tənlik Canavarı</p>
+                                <p class="text-xs text-indigo-400 font-medium mt-0.5">🥈 Tənlik Canavarı</p>
                             </div>
                         </div>
-                        <span class="font-mono font-extrabold text-emerald-400 text-sm bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/10">1100 XP</span>
+                        <span class="font-mono font-extrabold text-emerald-400 text-xs bg-emerald-500/10 px-3 py-1 rounded-lg border border-emerald-500/10">1100 XP</span>
                     </div>
                 </div>
             </div>
@@ -211,12 +239,13 @@
 
     </main>
 
-    <footer class="border-t border-slate-900 bg-slate-950/40 py-12 text-center text-xs text-slate-500">
-        <p>© 2026 RM Math Platform. Müəllif və Repetitor: Rəsul Məmmədzadə</p>
+    <footer class="border-t border-slate-900/60 bg-slate-950/80 py-12 text-center text-xs text-slate-600">
+        <p class="mb-2">© 2026 RM Math Platform. Bütün hüquqlar qorunur.</p>
+        <p>Müəllif və Riyaziyyat Müəllimi: <span class="text-slate-400 font-semibold">Rəsul Məmmədzadə</span></p>
     </footer>
 
     <script>
-        // 1. Dinamik Qrafik Kodları
+        // 1. Dinamik Qrafik Logikası
         const slopeSlider = document.getElementById('slopeSlider');
         const interceptSlider = document.getElementById('interceptSlider');
         const slopeVal = document.getElementById('slopeVal');
@@ -228,10 +257,11 @@
             const a = parseFloat(slopeSlider.value);
             const b = parseFloat(interceptSlider.value);
 
-            slopeVal.innerText = a;
-            interceptVal.innerText = b;
-            formulaText.innerText = `y = ${a}x + (${b})`;
+            slopeVal.innerText = a >= 0 ? `+${a}` : a;
+            interceptVal.innerText = b >= 0 ? `+${b}` : b;
+            formulaText.innerText = `y = ${a}x ${b >= 0 ? '+' : ''}${b}`;
 
+            // Scale calculations for SVG (500x320, Center: 250, 160)
             const y1 = 160 - (a * -250 + b * 2);
             const y2 = 160 - (a * 250 + b * 2);
 
@@ -243,27 +273,59 @@
 
         slopeSlider.addEventListener('input', updateGraph);
         interceptSlider.addEventListener('input', updateGraph);
-        updateGraph();
+        updateGraph(); // Init
 
-        // 2. Süni İntellekt Simulyasiya Kodları
+        // 2. Chatbot Simulyasiya Logikası
         const aiInput = document.getElementById('aiInput');
         const aiBtn = document.getElementById('aiBtn');
-        const aiResponseBox = document.getElementById('aiResponseBox');
-        const aiResponseText = document.getElementById('aiResponseText');
+        const chatContainer = document.getElementById('chatContainer');
 
         aiBtn.addEventListener('click', () => {
-            const query = aiInput.value.trim().toLowerCase();
+            const query = aiInput.value.trim();
             if(!query) return;
 
-            aiResponseBox.classList.remove('hidden');
-            
-            if(query.includes('diskriminant') || query.includes('kvadrat tənlik')) {
-                aiResponseText.innerHTML = "Kvadrat tənliyin (ax² + bx + c = 0) diskriminant düsturu: <strong>D = b² - 4ac</strong>. <br>• D > 0 isə iki müxtəlif kökü var.<br>• D = 0 isə iki bərabər kökü var.";
-            } else if(query.includes('faiz')) {
-                aiResponseText.innerHTML = "Ədədin faizini tapmaq üçün düstur: <strong>P = (A * p) / 100</strong>. <br>Məsələn: 80-nin 20%-i: (80 * 20) / 100 = 16.";
-            } else {
-                aiResponseText.innerHTML = `"${aiInput.value}" mövzusu üzrə dərslik materialı bazaya əlavə edilir. Rəsul müəllimlə dərslərdə bu mövzunu tam dərindən keçə bilərsiniz!`;
-            }
+            // User Message Appending
+            const userDiv = document.createElement('div');
+            userDiv.className = "flex items-start space-x-3 max-w-[85%] ml-auto justify-end animate-chat";
+            userDiv.innerHTML = `
+                <div class="bg-teal-500 text-slate-950 px-4 py-3 rounded-2xl rounded-tr-none text-sm font-medium">
+                    ${query}
+                </div>
+            `;
+            chatContainer.appendChild(userDiv);
+            aiInput.value = ''; // Reset
+
+            // Scroll to bottom
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+
+            // Simulate AI Bot Thinking & Response
+            setTimeout(() => {
+                let botAnswer = "";
+                const lowerQuery = query.toLowerCase();
+
+                if(lowerQuery.includes('diskriminant') || lowerQuery.includes('kvadrat tənlik')) {
+                    botAnswer = "Kvadrat tənliyin (ax² + bx + c = 0) disriminantı: <strong>D = b² - 4ac</strong> düsturu ilə tapılır. D > 0 olduqda tənliyin 2 fərqli həqiqi kökü var.";
+                } else if(lowerQuery.includes('faiz')) {
+                    botAnswer = "Ədədin faizini tapmaq üçün ədədi faiz göstərən ədədə vurub 100-ə bölmək lazımdır: <strong>P = (A * p) / 100</strong>.";
+                } else {
+                    botAnswer = "Bu maraqlı sualdır! Rəsul müəllimlə növbəti onlayn dərsdə bu mövzunu daha ətraflı və dərindən analiz edə bilərik.";
+                }
+
+                const botDiv = document.createElement('div');
+                botDiv.className = "flex items-start space-x-3 max-w-[85%] animate-chat";
+                botDiv.innerHTML = `
+                    <div class="w-8 h-8 rounded-lg bg-teal-500/10 border border-teal-500/20 flex items-center justify-center text-xs text-teal-400 shrink-0">🤖</div>
+                    <div class="bg-slate-900 px-4 py-3 rounded-2xl rounded-tl-none border border-slate-800/60 text-sm text-slate-300">
+                        ${botAnswer}
+                    </div>
+                `;
+                chatContainer.appendChild(botDiv);
+                chatContainer.scrollTop = chatContainer.scrollHeight;
+            }, 600);
+        });
+
+        aiInput.addEventListener('keypress', (e) => {
+            if(e.key === 'Enter') aiBtn.click();
         });
     </script>
 </body>
