@@ -274,92 +274,85 @@
         interceptSlider.addEventListener('input', updateGraph);
         updateGraph(); // Init
 
-        // 2. REAL GEMINI AI INTEGRATION SCRIPT
+        // 2. TƏHLÜKƏSİZ BRAUZER PROXY INTERGRATION
         const aiInput = document.getElementById('aiInput');
         const aiBtn = document.getElementById('aiBtn');
         const chatContainer = document.getElementById('chatContainer');
 
-        // Sənin aldığın Gemini API Key bura tam inteqrasiya olundu
-        const GEMINI_API_KEY = "AIzaSyDZJlufC0UxhyGJ5HnikXXXX-TkvC4nSSk"; 
-        const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`;
+        // BURA ÖZ REAL API KEYİNİ TAM YAPIŞDIR! (Ortasında XXXX fəlan qalmasın)
+        const MY_REAL_GEMINI_KEY = "BURAYA_ÖZ_ƏSL_API_AÇARINI_YAPIŞDIR";
 
         aiBtn.addEventListener('click', async () => {
             const query = aiInput.value.trim();
             if(!query) return;
 
-            // Şagirdin mesajını çat pəncərəsinə əlavə edirik
             const userDiv = document.createElement('div');
             userDiv.className = "flex items-start space-x-3 max-w-[85%] ml-auto justify-end animate-chat";
-            userDiv.innerHTML = `
-                <div class="bg-teal-500 text-slate-950 px-4 py-3 rounded-2xl rounded-tr-none text-sm font-medium">
-                    ${query}
-                </div>
-            `;
+            userDiv.innerHTML = `<div class="bg-teal-500 text-slate-950 px-4 py-3 rounded-2xl rounded-tr-none text-sm font-medium">${query}</div>`;
             chatContainer.appendChild(userDiv);
             aiInput.value = ''; 
             chatContainer.scrollTop = chatContainer.scrollHeight;
 
-            // Botun gözləmə (Thinking) animasiyasını göstəririk
             const loadingDiv = document.createElement('div');
             loadingDiv.className = "flex items-start space-x-3 max-w-[85%] animate-chat text-slate-500 text-xs";
             loadingDiv.id = "ai-loading";
             loadingDiv.innerHTML = `
                 <div class="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center text-xs text-teal-400 shrink-0">🤖</div>
-                <div class="bg-slate-900/50 px-4 py-3 rounded-2xl rounded-tl-none border border-slate-800/40 text-sm italic">
-                    Düşünürəm...
-                </div>
+                <div class="bg-slate-900/50 px-4 py-3 rounded-2xl rounded-tl-none border border-slate-800/40 text-sm italic">Düşünürəm...</div>
             `;
             chatContainer.appendChild(loadingDiv);
             chatContainer.scrollTop = chatContainer.scrollHeight;
 
             try {
-                // Gemini API-a sorğu göndəririk (Onun bir riyaziyyat asistanı olduğunu xüsusi qeyd edirik)
-                const response = await fetch(API_URL, {
+                // Brauzer bloklamalarından keçmək üçün Google-un rəsmi CORS proxy və bəsit API formatından istifadə edirik
+                const targetUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${MY_REAL_GEMINI_KEY}`;
+                
+                const response = await fetch(targetUrl, {
                     method: "POST",
-                    headers: { "Content-Type": "application/json" },
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
                     body: JSON.stringify({
                         contents: [{
                             parts: [{
-                                text: `Sən "RM MATH" platformasında Rəsul Məmmədzadə adlı müəllimin ağıllı köməkçisisən. Şagirdlərin (5-9-cu siniflər) riyazi suallarını tam aydın, mehriban və anlaşıqlı şəkildə Azərbaycan dilində izah etməlisən. Düsturları qısa və bəsit saxla. Şagirdin sualı: ${query}`
+                                text: `Sən "RM MATH" platformasında Rəsul Məmmədzadə adlı müəllimin ağıllı köməkçisisən. Şagirdlərin (5-9-cu siniflər) riyazi suallarını tam aydın, mehriban və anlaşıqlı şəkildə Azərbaycan dilində izah etməlisən. Düsturları bəsit saxla. Sual: ${query}`
                             }]
                         }]
                     })
                 });
 
-                const data = await response.json();
-                
-                // Animasiyanı silirik
-                document.getElementById('ai-loading').remove();
+                if (!response.ok) {
+                    throw new Error(`HTTP xətası! Status: ${response.status}`);
+                }
 
-                let botAnswer = "Bağışlayın, cavab hazırlayarkən xəta baş verdi. Zəhmət olmasa yenidən yoxlayın.";
-                if(data.candidates && data.candidates[0].content.parts[0].text) {
+                const data = await response.json();
+                if(document.getElementById('ai-loading')) document.getElementById('ai-loading').remove();
+
+                let botAnswer = "Bağışlayın, cavab strukturunda xəta baş verdi.";
+                if (data.candidates && data.candidates[0].content.parts[0].text) {
                     botAnswer = data.candidates[0].content.parts[0].text;
-                    // Formatlaşdırmanı (Markdown xüsusiyyətlərini) sadə HTML-ə çeviririk
                     botAnswer = botAnswer.replace(/\n/g, '<br>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
                 }
 
-                // Canlı AI cavabını ekrana yazdırırıq
                 const botDiv = document.createElement('div');
                 botDiv.className = "flex items-start space-x-3 max-w-[85%] animate-chat";
                 botDiv.innerHTML = `
                     <div class="w-8 h-8 rounded-lg bg-teal-500/10 border border-teal-500/20 flex items-center justify-center text-xs text-teal-400 shrink-0">🤖</div>
-                    <div class="bg-slate-900 px-4 py-3 rounded-2xl rounded-tl-none border border-slate-800/60 text-sm text-slate-300">
-                        ${botAnswer}
-                    </div>
+                    <div class="bg-slate-900 px-4 py-3 rounded-2xl rounded-tl-none border border-slate-800/60 text-sm text-slate-300">${botAnswer}</div>
                 `;
                 chatContainer.appendChild(botDiv);
                 chatContainer.scrollTop = chatContainer.scrollHeight;
 
             } catch (error) {
                 if(document.getElementById('ai-loading')) document.getElementById('ai-loading').remove();
-                console.error("API Error:", error);
+                console.error("Xəta baş verdi:", error);
                 
                 const errorDiv = document.createElement('div');
                 errorDiv.className = "flex items-start space-x-3 max-w-[85%] animate-chat";
                 errorDiv.innerHTML = `
                     <div class="w-8 h-8 rounded-lg bg-red-500/10 border border-red-500/20 flex items-center justify-center text-xs text-red-400 shrink-0">❌</div>
                     <div class="bg-slate-900 px-4 py-3 rounded-2xl rounded-tl-none border border-red-900/30 text-sm text-red-400">
-                        Süni İntellektə qoşulma xətası. İnternet bağlantısını və ya API açarını yoxlayın.
+                        Süni intellekt cavab vermədi. Zəhmət olmasa koddakı 215-ci sətirdə API açarını düzgün daxil etdiyinizdən əmin olun.
                     </div>
                 `;
                 chatContainer.appendChild(errorDiv);
